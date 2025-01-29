@@ -1,0 +1,13 @@
+Package: manticore
+Title: Monte Carlo algorithm for generating null models of tree congruence
+Version: 0.0.0.9000
+Authors@R: 
+    person("James", "DuBose", email = "james.g.dubose@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: What the package does (one paragraph).
+License: `use_mit_license()`
+Imports:
+    TreeDist
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
