@@ -73,8 +73,8 @@ input.check <- function(reference.tree, comparison.tree, congruence.metric, iter
   }
   
   # define metrics for check
-  metrics <- c('RF', 'RF+n', 'ICRF', 'ICRF+n', 'JRF', 'JRF+n', 'MCI', 'MCI+n', 
-               'SPI', 'SPI+n', 'NS', 'NS+n', 'MSD', 'MSD+n', 'MSID', 'MSID+n')
+  metrics <- c('RF', 'ICRF', 'JRF', 'MCI', 
+               'SPI', 'NS', 'MSD', 'MSID')
   
   # check that congruence metric is defined
   if (congruence.metric %in% metrics) {
@@ -256,30 +256,35 @@ observed.congruence <- function(reference.tree, comparison.tree, metric, normali
   return(congruence.value)
 }
 
-#' Random Tree Congruence Test
+#' Perform random tree congruence test 
+#' 
+#' @description Perform a  
+#' random tree congruence test. This function
+#' uses Monte Carlo simulations to generate a
+#' null congruence distribution and then 
+#' evaluates the proportion of null comparisons 
+#' that showed congruence that was greater than 
+#' or equal to that of the observed congruence. 
 #' 
 #' @param reference.tree Path to reference tree file, or string in Newick format
 #' @param comparison.tree Path to comparison tree file, or string in Newick format
 #' @param congruence.metric Metric used to evaluate congruence. Options include:
 #' 
-#' - MCI: Mutual Clustering Information
+#' - MCI: Mutual Clustering Information (Smith, 2020a)
 #'
-#' - SPI: Shared Phylogenetic Information
+#' - SPI: Shared Phylogenetic Information (Smith, 2020a)
 #'
-#' - NS: Nye Similarity
+#' - NS: Nye Similarity (Nye et al, 2006)
 #'
-#' - JRF: Jaccard-Robinson-Foulds
+#' - JRF: Jaccard-Robinson-Foulds (Böcker et al, 2013)
 #'
-#' - MSD: Matching Split Distance
+#' - MSD: Matching Split Distance (Bogdanowicz and Giaro, 2012)
 #'
-#' - MSID: Matching Split Information Distance
+#' - MSID: Matching Split Information Distance (Smith, 2020a)
 #'
-#' - RF: Robinson-Foulds
+#' - RF: Robinson-Foulds (Robinson and Foulds, 1981)
 #'
-#' - ICRF: Information-Corrected Robinson Foulds
-#' 
-#' Note: add '+n' to metric abbreviation to perform normalization. For example,
-#' for normalized JRF, use 'JRF+n'
+#' - ICRF: Information-Corrected Robinson Foulds (Smith, 2020a)
 #' 
 #' @param iterations The number of randomly simulated trees used to construct null distribution
 #' @param verbose Display run updates (TRUE of FALSE)
@@ -290,6 +295,39 @@ observed.congruence <- function(reference.tree, comparison.tree, metric, normali
 #' <b>p</b>: The proportion of values in the null distribution that are greater than or equal to the observed congruence
 #' 
 #' <b>null.congruence.model</b>: A vector containing the null congruence values
+#' @details 
+#' The random tree congruence test can be used with 
+#' a variety of congruence metrics that vary in 
+#' what aspects of congruence they consider. The
+#' congruence metrics offered are all implemented 
+#' by the <b><i>TreeDist</i></b> library (Smith 2020b).
+#' The random tree simulations are implemented by the
+#' <b><i>ape</i></b> library (Paradis and Schliep 2019).
+#' Any use of this library should include reference to 
+#' these libraries as well (see References section). 
+#' Furthermore, the specific congruence metric(s) used
+#' should also be referenced (see above list). 
+#' 
+#' @examples
+#' tree1 <- 'path/to/tree1.nwk'
+#' tree2 <- 'path/to/tree2.nwk'
+#' rtc.test(reference.tree=tree1, comparison.tree=tree2, congruence.metric='MCI', iterations=1000, verbose=TRUE)
+#' 
+#' @references 
+#' Böcker S., Canzar S., Klau G.W. (2013) The Generalized Robinson-Foulds Metric. In Algorithms in Bioinformatics (eds A Darling, J Stoye), pp. 156–169. Berlin, Heidelberg: Springer Berlin Heidelberg. 
+#' 
+#' Bogdanowicz D., Giaro K. (2012) Matching Split Distance for Unrooted Binary Phylogenetic Trees. IEEE/ACM Trans. Comput. Biol. and Bioinf. doi:10.1109/TCBB.2011.48
+#' 
+#' Nye T.M.W., Liò P., Gilks W.R. (2006) A novel algorithm and web-based tool for comparing two alternative phylogenetic trees. Bioinformatics. doi:10.1093/bioinformatics/bti720
+#' 
+#' Paraids E., Schliep K. (2019) ape 5.0: an environment for modern phylogenetics and evolutionary analyses in R. Bioinformatics. doi:10.1093/bioinformatics/bty633
+#' 
+#' Robinson D.F., Foulds L.R. (1981) Comparison of phylogenetic trees. Mathematical Biosciences. doi:10.1016/0025-5564(81)90043-2
+#' 
+#' Smith MR. (2020a) Information theoretic generalized Robinson–Foulds metrics for comparing phylogenetic trees. Bioinformatics. doi:10.1093/bioinformatics/btaa614
+#' 
+#' Smith M.R. (2020b) TreeDist: distances between phylogenetic trees. Comprehensive R Archive Network. doi: 10.5281/zenodo.3528123.
+#' 
 #' @export
 rtc.test <- function(reference.tree, comparison.tree, congruence.metric, iterations, verbose=FALSE){
   
@@ -302,14 +340,9 @@ rtc.test <- function(reference.tree, comparison.tree, congruence.metric, iterati
       print("Input loaded.")
     }
     
-    # determine normalization
-    if (grepl("\\+n$", input$loaded.congruence.metric)) {
-      normalize <- TRUE
-      metric <- sub("\\+n$", "", input$loaded.congruence.metric)
-    } else {
-      normalize <- FALSE
-      metric <- input$loaded.congruence.metric
-    }
+    # define metric and normalization
+    metric <- input$loaded.congruence.metric
+    normalize <- FALSE
     
     if (verbose == TRUE) {
       print("Generating null congruence model...")

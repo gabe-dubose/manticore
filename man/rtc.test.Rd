@@ -2,7 +2,7 @@
 % Please edit documentation in R/random_tree_congruence_test.R
 \name{rtc.test}
 \alias{rtc.test}
-\title{Random Tree Congruence Test}
+\title{Perform random tree congruence test}
 \usage{
 rtc.test(
   reference.tree,
@@ -19,18 +19,15 @@ rtc.test(
 
 \item{congruence.metric}{Metric used to evaluate congruence. Options include:
 \itemize{
-\item MCI: Mutual Clustering Information
-\item SPI: Shared Phylogenetic Information
-\item NS: Nye Similarity
-\item JRF: Jaccard-Robinson-Foulds
-\item MSD: Matching Split Distance
-\item MSID: Matching Split Information Distance
-\item RF: Robinson-Foulds
-\item ICRF: Information-Corrected Robinson Foulds
-}
-
-Note: add '+n' to metric abbreviation to perform normalization. For example,
-for normalized JRF, use 'JRF+n'}
+\item MCI: Mutual Clustering Information (Smith, 2020a)
+\item SPI: Shared Phylogenetic Information (Smith, 2020a)
+\item NS: Nye Similarity (Nye et al, 2006)
+\item JRF: Jaccard-Robinson-Foulds (Böcker et al, 2013)
+\item MSD: Matching Split Distance (Bogdanowicz and Giaro, 2012)
+\item MSID: Matching Split Information Distance (Smith, 2020a)
+\item RF: Robinson-Foulds (Robinson and Foulds, 1981)
+\item ICRF: Information-Corrected Robinson Foulds (Smith, 2020a)
+}}
 
 \item{iterations}{The number of randomly simulated trees used to construct null distribution}
 
@@ -46,5 +43,45 @@ Function returns the random tree congruence test results. This is a list object 
 \if{html}{\out{<b>}}null.congruence.model\if{html}{\out{</b>}}: A vector containing the null congruence values
 }
 \description{
-Random Tree Congruence Test
+Perform a
+random tree congruence test. This function
+uses Monte Carlo simulations to generate a
+null congruence distribution and then
+evaluates the proportion of null comparisons
+that showed congruence that was greater than
+or equal to that of the observed congruence.
+}
+\details{
+The random tree congruence test can be used with
+a variety of congruence metrics that vary in
+what aspects of congruence they consider. The
+congruence metrics offered are all implemented
+by the \if{html}{\out{<b>}}\if{html}{\out{<i>}}TreeDist\if{html}{\out{</i>}}\if{html}{\out{</b>}} library (Smith 2020b).
+The random tree simulations are implemented by the
+\if{html}{\out{<b>}}\if{html}{\out{<i>}}ape\if{html}{\out{</i>}}\if{html}{\out{</b>}} library (Paradis and Schliep 2019).
+Any use of this library should include reference to
+these libraries as well (see References section).
+Furthermore, the specific congruence metric(s) used
+should also be referenced (see above list).
+}
+\examples{
+tree1 <- 'path/to/tree1.nwk'
+tree2 <- 'path/to/tree2.nwk'
+rtc.test(reference.tree=tree1, comparison.tree=tree2, congruence.metric='MCI', iterations=1000, verbose=TRUE)
+
+}
+\references{
+Böcker S., Canzar S., Klau G.W. (2013) The Generalized Robinson-Foulds Metric. In Algorithms in Bioinformatics (eds A Darling, J Stoye), pp. 156–169. Berlin, Heidelberg: Springer Berlin Heidelberg.
+
+Bogdanowicz D., Giaro K. (2012) Matching Split Distance for Unrooted Binary Phylogenetic Trees. IEEE/ACM Trans. Comput. Biol. and Bioinf. doi:10.1109/TCBB.2011.48
+
+Nye T.M.W., Liò P., Gilks W.R. (2006) A novel algorithm and web-based tool for comparing two alternative phylogenetic trees. Bioinformatics. doi:10.1093/bioinformatics/bti720
+
+Paraids E., Schliep K. (2019) ape 5.0: an environment for modern phylogenetics and evolutionary analyses in R. Bioinformatics. doi:10.1093/bioinformatics/bty633
+
+Robinson D.F., Foulds L.R. (1981) Comparison of phylogenetic trees. Mathematical Biosciences. doi:10.1016/0025-5564(81)90043-2
+
+Smith MR. (2020a) Information theoretic generalized Robinson–Foulds metrics for comparing phylogenetic trees. Bioinformatics. doi:10.1093/bioinformatics/btaa614
+
+Smith M.R. (2020b) TreeDist: distances between phylogenetic trees. Comprehensive R Archive Network. doi: 10.5281/zenodo.3528123.
 }
