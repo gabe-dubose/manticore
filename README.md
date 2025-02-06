@@ -63,7 +63,12 @@ hist(rtc.results$null.congruence.model,
 abline(v=rtc.results$observed.congruence,
        col='red', lty=2, lwd=2)
 ```
+which shows:
 
+<img src="images/demo_null.png" width="300"/>
+
+As we can see, our null model was pretty unlikely to produce a random tree that showed greater than or equal to congruence to what we actually observed. As a gut check,
+we can also visualize these trees as tanglegrams, which I'll use the <i>ape</i> and <i>phytools</i> libraries for:
 
 ## Manual
 
