@@ -40,6 +40,30 @@ Now that the trees are loaded, we can run the <i>rtc.test()</i> function. For th
 rtc.results <- rtc.test(tree1, tree2, 'MCI', 1000, verbose=FALSE)
 ```
 
+The <i>rtc.test()</i> function returns a list object with the value names <i>observed.congruence</i>, <i>p</i>, and <i>null.congruence.model</i>, which can be accessed with the <i>$</i> 
+operator. For example, we can view the results:
+
+```r
+> print(paste("Congruence =", rtc.results$observed.congruence))
+> print(paste("P(Null >= Observed) =", rtc.results$p))
+```
+
+which shows: 
+```
+[1] "Congruence = 2.77480542779449"
+[1] "P(Null >= Observed) = 0.013"
+```
+
+We can also visualize the results along with the null model:
+```r
+hist(rtc.results$null.congruence.model,
+     main=paste("P(Null >= Observed) =", rtc.results$p), 
+     xlab='Congruence',
+     freq = FALSE)
+abline(v=rtc.results$observed.congruence,
+       col='red', lty=2, lwd=2)
+```
+
 
 ## Manual
 
