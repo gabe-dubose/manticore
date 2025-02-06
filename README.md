@@ -68,7 +68,21 @@ which shows:
 <img src="images/demo_null.png" width="300"/>
 
 As we can see, our null model was pretty unlikely to produce a random tree that showed greater than or equal to congruence to what we actually observed. As a gut check,
-we can also visualize these trees as tanglegrams, which I'll use the <i>ape</i> and <i>phytools</i> libraries for:
+we can also visualize these trees as tanglegrams, which I'll use the <i>ape</i> (Paradis and Schliep, 2019) and <i>phytools</i> (Revell, 2024) libraries for:
+
+```r
+# read trees using ape
+tree1 <- ape::read.tree(text=tree1)
+tree2 <- ape::read.tree(text=tree2)
+# define tanglegram and plot
+tanglegram <- phytools::cophylo(tree1, tree2, rotate=TRUE)
+plot(tanglegram, link.type="curved", link.lwd=3, link.lty="solid")
+
+```
+
+<img src="images/tanglegram.png" width="450"/>
+
+This is just another helpful way to contextualize the qunantified congruence that can be use to inform hypotheses and inferences. 
 
 ## Manual
 
@@ -137,7 +151,9 @@ Bogdanowicz D., Giaro K. (2012) Matching Split Distance for Unrooted Binary Phyl
 
 Nye T.M.W., Liò P., Gilks W.R. (2006) A novel algorithm and web-based tool for comparing two alternative phylogenetic trees. Bioinformatics. doi:10.1093/bioinformatics/bti720
 
-Paraids E., Schliep K. (2019) ape 5.0: an environment for modern phylogenetics and evolutionary analyses in R. Bioinformatics. doi:10.1093/bioinformatics/bty633
+Paradis E., Schliep K. (2019) ape 5.0: an environment for modern phylogenetics and evolutionary analyses in R. Bioinformatics. doi:10.1093/bioinformatics/bty633
+
+Revell L.J. (2024) phytools 2.0: an updated R ecosystem for phylogenetic comparative methods (and other things). PeerJ. doi:10.7717/peerj.16505
 
 Robinson D.F., Foulds L.R. (1981) Comparison of phylogenetic trees. Mathematical Biosciences. doi:10.1016/0025-5564(81)90043-2
 
