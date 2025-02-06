@@ -1,13 +1,14 @@
 Package: manticore
-Title: Monte Carlo algorithm for generating null models of tree congruence
-Version: 0.0.0.9000
+Title: Monte cArlo simulaioN algoriThm for assessIng tree COngRuencE
+Version: 2025.2
 Authors@R: 
     person("James", "DuBose", email = "james.g.dubose@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           comment = c(ORCID = "0000-0002-0488-4734"))
+Description: Manticore is an R library for implementing a Monte Carlo simulation approach for assessing the topological congruence between phylogenetic trees. The general idea behind this approach is pretty simple. To statistically evaluate the congruence between two trees, you can generate a null congruence distirbution by repeatedly simulating random trees and quantifyign how congruent they are with you tree of interest. You can then ask the question: how often is the congruence between my tree of interest and random trees greater than or equal to the congruence observed between my actual trees? The answer to this question lies in the P(Null ≥ Obseved) value, which can help statistically contextualize the actual congruence value.
 License: `use_mit_license()`
 Imports:
     TreeDist
+    ape
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
