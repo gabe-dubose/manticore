@@ -387,13 +387,13 @@ rtc.test <- function(reference.tree, comparison.tree, congruence.metric, iterati
     # metric:Jaccard-Robinson-Foulds Distance
     # distance: greater value = less congruent (more dissimilar)
     # => calculate the number of null runs that showed less than or equal to congruence
-    if (metric == 'JRF')
+    if (metric == 'JRF'){
       p.null.geq.obs <- sum(null.congruence.model <= observed) / length(null.congruence.model)
       # assemble output and return
       rtc.results <- list(observed.congruence = observed,
                         p = p.null.geq.obs,
                         null.congruence.model = null.congruence.model)
-      
+    }
     # metric: Matching Split Distance
     # distance: greater value = less congruent (more dissimilar)
     # => calculate the number of null runs that showed less than or equal to congruence
@@ -462,4 +462,3 @@ rtc.test <- function(reference.tree, comparison.tree, congruence.metric, iterati
     print(input$error)
   }
 }
-
