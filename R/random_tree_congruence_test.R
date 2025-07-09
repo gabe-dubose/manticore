@@ -360,15 +360,98 @@ rtc.test <- function(reference.tree, comparison.tree, congruence.metric, iterati
     #calculate observed congruence
     observed <- observed.congruence(input$loaded.reference.tree, input$loaded.comparison.tree, metric, normalize = normalize)
     
-    # calculate the number of null runs that showed greater than or equal to
-    # congruence 
-    p.null.geq.obs <- sum(null.congruence.model >= observed) / length(null.congruence.model)
-
-    # assemble output and return
-    rtc.results <- list(observed.congruence = observed,
+    # run rtc tests
+    
+    # metric: Robsin-Foulds
+    # distance: greater value = less congruent (more dissimilar)
+    #  => calculate the number of null runs that showed less than or equal to congruence
+    if (metric == 'RF'){
+      p.null.geq.obs <- sum(null.congruence.model <= observed) / length(null.congruence.model)
+      # assemble output and return
+      rtc.results <- list(observed.congruence = observed,
+                          p = p.null.geq.obs,
+                          null.congruence.model = null.congruence.model)
+    }
+    
+    # metric:Information-Corrected Robinson-Foulds Distance
+    # distance: greater value = less congruent (more dissimilar)
+    # => calculate the number of null runs that showed less than or equal to congruence
+    if (metric == 'ICRF'){
+      p.null.geq.obs <- sum(null.congruence.model <= observed) / length(null.congruence.model)
+      # assemble output and return
+      rtc.results <- list(observed.congruence = observed,
+                          p = p.null.geq.obs,
+                          null.congruence.model = null.congruence.model)
+    }
+    
+    # metric:Jaccard-Robinson-Foulds Distance
+    # distance: greater value = less congruent (more dissimilar)
+    # => calculate the number of null runs that showed less than or equal to congruence
+    if (metric == 'JRF')
+      p.null.geq.obs <- sum(null.congruence.model <= observed) / length(null.congruence.model)
+      # assemble output and return
+      rtc.results <- list(observed.congruence = observed,
                         p = p.null.geq.obs,
                         null.congruence.model = null.congruence.model)
-    
+      
+    # metric: Matching Split Distance
+    # distance: greater value = less congruent (more dissimilar)
+    # => calculate the number of null runs that showed less than or equal to congruence
+    if (metric == 'MSD'){
+      p.null.geq.obs <- sum(null.congruence.model <= observed) / length(null.congruence.model)
+      # assemble output and return
+      rtc.results <- list(observed.congruence = observed,
+                          p = p.null.geq.obs,
+                          null.congruence.model = null.congruence.model)
+    }
+      
+    # metric: Matching Split Information Distance
+    # distance: greater value = less congruent (more dissimilar)
+    # => calculate the number of null runs that showed less than or equal to congruence   
+      
+    if (metric == 'MSID'){
+      p.null.geq.obs <- sum(null.congruence.model <= observed) / length(null.congruence.model)
+      # assemble output and return
+      rtc.results <- list(observed.congruence = observed,
+                          p = p.null.geq.obs,
+                          null.congruence.model = null.congruence.model)
+    }
+      
+    # metric: Mutual Clustering Information
+    # dissimilarity: higher value = more congruent
+    # => calculate the number of null runs that showed greater than or equal to congruence      
+      
+    if (metric == 'MCI'){
+      p.null.geq.obs <- sum(null.congruence.model >= observed) / length(null.congruence.model)
+      # assemble output and return
+      rtc.results <- list(observed.congruence = observed,
+                          p = p.null.geq.obs,
+                          null.congruence.model = null.congruence.model)
+    }
+      
+    # metric: Shared Phylogenetic Information
+    # dissimilarity: higher value = more congruent
+    # => calculate the number of null runs that showed greater than or equal to congruence      
+      
+    if (metric == 'SPI'){
+      p.null.geq.obs <- sum(null.congruence.model >= observed) / length(null.congruence.model)
+      # assemble output and return
+      rtc.results <- list(observed.congruence = observed,
+                          p = p.null.geq.obs,
+                          null.congruence.model = null.congruence.model)
+    }
+      
+    # metric: Nye Similarity
+    # dissimilarity: higher value = more congruent
+    # => calculate the number of null runs that showed greater than or equal to congruence    
+    if (metric == 'NS'){
+      p.null.geq.obs <- sum(null.congruence.model >= observed) / length(null.congruence.model)
+      # assemble output and return
+      rtc.results <- list(observed.congruence = observed,
+                          p = p.null.geq.obs,
+                          null.congruence.model = null.congruence.model)
+    }
+       
     if (verbose == TRUE) {
       print("Complete.")
     }
