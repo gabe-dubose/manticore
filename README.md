@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14828440.svg)](https://doi.org/10.5281/zenodo.14828440)
 # MANTICORE: Monte cArlo simulaioN algoriThm for assessIng tree COngRuencE
 Manticore is an R library for implementing a Monte Carlo simulation approach for assessing the topological congruence between
 phylogenetic trees. The general idea behind this approach is pretty simple. To statistically evaluate the congruence between two trees,
