@@ -362,7 +362,7 @@ rtc.test <- function(reference.tree, comparison.tree, congruence.metric, iterati
     
     # run rtc tests
     
-    # metric: Robsin-Foulds
+    # metric: Robinson-Foulds
     # distance: greater value = less congruent (more dissimilar)
     #  => calculate the number of null runs that showed less than or equal to congruence
     if (metric == 'RF'){
