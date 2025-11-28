@@ -33,18 +33,3 @@ and $H_A$ simulations conducted using the <i>error_simulations.R</i> and <i>powe
 
 ```visualize_sensitivity.py```: script used to visualize sensitivity. This script relies on output from <i>`sensitivity_simulations.R</i>.
 
-## figures
-```error.pdf```: figure visualizing type 1 error rate from $H_0$ simulations conducted using the the <i>error_simulations.R</i> script.
-
-```power_curves.pdf```: figure visualizing power as a function of noise from $H_A$ simulations conducted using the
-<i>power_simulations.R</i> script.
-
-```roc_curves.pdf```: figure visualising the ROC curves calcualted from the $H_0$ and $H_A$ simulations as implemented in the 
-<i>error_simulations.R</i> and <i>power_simulations.R</i> scripts, respectively. 
-
-```auc_roc_curves.pdf```: figure visualizing the area under the ROC curves depicted in <i>roc_curves.pdf</i>.
-
-```pct_agreement.pdf```: figure visualizing the proportion of agreements regarding statistical 
-support for a phylosymbiotic signal between each pair of congruence metric evaluated.
-
-
