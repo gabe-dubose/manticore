@@ -1,3 +1,21 @@
+# Dependencies
+To implement the following scripts, the following dependencies are needed.
+```
+install.packages("TreeDist")
+install.packages("ape")
+install.packages("phangorn")
+install.packages("phytools")
+install.packages("textshaping")
+install.packages("pkgdown")
+install.packages("ragg") #needed libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev libwebp-dev
+install.packages("devtools") #needed libharfbuzz-dev libfribidi-dev
+
+library(devtools)
+devtools::install_github("gabe-dubose/manticore")
+```
+
+
+
 # Evaluating random tree congruence testing
 This directory within the <i>manticore</i> primary directory contains the scripts used and figures generated for methodological evaluations. 
 
@@ -32,4 +50,5 @@ and $H_A$ simulations conducted using the <i>error_simulations.R</i> and <i>powe
 ```visualize_null_neutral_agreement.py```: script used to visualize agreement between neutral assembly null distributions and random tree null distributions. This script uses output from <i>neutral_assembly_tree_evaluations.R</i>.
 
 ```visualize_sensitivity.py```: script used to visualize sensitivity. This script relies on output from <i>`sensitivity_simulations.R</i>.
+
 
