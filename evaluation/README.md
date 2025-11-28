@@ -27,6 +27,12 @@ and $H_A$ simulations conducted using the <i>error_simulations.R</i> and <i>powe
 
 ```neutral_assembly_tree_evaluations.R```: script used to simulate microbial communities that were neutrally assembled with respect to host phylogeny, construct congruence distributions, and compare said distributions to those obtained via uniform tree sampling. 
 
+```sensitivity_simulations.R```: script used to perform sensitivity testing simulations.
+
+```visualize_null_neutral_agreement.py```: script used to visualize agreement between neutral assembly null distributions and random tree null distributions. This script uses output from <i>neutral_assembly_tree_evaluations.R</i>.
+
+```visualize_sensitivity.py```: script used to visualize sensitivity. This script relies on output from <i>`sensitivity_simulations.R</i>.
+
 ## figures
 ```error.pdf```: figure visualizing type 1 error rate from $H_0$ simulations conducted using the the <i>error_simulations.R</i> script.
 
@@ -40,4 +46,5 @@ and $H_A$ simulations conducted using the <i>error_simulations.R</i> and <i>powe
 
 ```pct_agreement.pdf```: figure visualizing the proportion of agreements regarding statistical 
 support for a phylosymbiotic signal between each pair of congruence metric evaluated.
+
 
